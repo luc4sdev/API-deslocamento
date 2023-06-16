@@ -23,7 +23,9 @@ interface Displacement {
 
 
 
-export async function getDisplacement(params: any) {
+export async function getDisplacement(params: {
+    displacementId: string;
+}) {
 
     const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/${params.displacementId}`)
 
@@ -40,9 +42,9 @@ export async function generateStaticParams() {
 
     const paths = data.map((displacements: Displacement) => {
         return {
-            params: [{
-                displacementId: `${String(displacements.id)}`
-            }]
+            params: {
+                displacementId: String(displacements.id)
+            }
         }
     })
     

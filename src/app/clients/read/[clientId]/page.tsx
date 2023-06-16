@@ -21,7 +21,9 @@ interface Client {
 
 
 
-export async function getClient(params: any) {
+export async function getClient(params: {
+    clientId: string;
+}) {
 
     const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Cliente/${params.clientId}`)
 
@@ -38,9 +40,9 @@ export async function generateStaticParams() {
 
     const paths = data.map((client: Client) => {
         return {
-            params: [{
-                clientId: `${String(client.id)}`
-            }]
+            params: {
+                clientId: String(client.id)
+            }
         }
     })
     
@@ -53,7 +55,6 @@ export default function Client({ params } : any) {
     const [client, setClient] = useState<Client>();
     const buttonOff = true;
 
-console.log(params.id)
     useEffect(() => {
       getClient(params)
         .then((data) => {

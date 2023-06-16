@@ -17,7 +17,9 @@ interface Conductor {
 
 
 
-export async function getConductor(params: any) {
+export async function getConductor(params: {
+    conductorId: string;
+}) {
 
     const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Condutor/${params.conductorId}`)
 
@@ -34,9 +36,9 @@ export async function generateStaticParams() {
 
     const paths = data.map((conductor: Conductor) => {
         return {
-            params: [{
-                conductorId: `${String(conductor.id)}`
-            }]
+            params: {
+                conductorId: String(conductor.id)
+            }
         }
     })
     
@@ -44,7 +46,7 @@ export async function generateStaticParams() {
 }
 
 
-export default function Conductor({ params } : any) {
+export default function Conductor({ params }: any) {
 
     const [conductor, setConductor] = useState<Conductor>();
     const buttonOff = true;

@@ -17,7 +17,9 @@ interface Vehicle {
 
 
 
-export async function getVehicle(params: any) {
+export async function getVehicle(params:  {
+    vehicleId: string;
+}) {
 
     const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Veiculo/${params.vehicleId}`)
 
@@ -34,9 +36,9 @@ export async function generateStaticParams() {
 
     const paths = data.map((displacements: Vehicle) => {
         return {
-            params: [{
-                vehicleId: `${String(displacements.id)}`
-            }]
+            params: {
+                vehicleId: String(displacements.id)
+            }
         }
     })
     
