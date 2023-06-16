@@ -1,0 +1,38 @@
+"use client";
+
+import { Header } from "@/components/Header/Header";
+import { OutlinedCard } from "@/components/OutlinedCard/OutlinedCard";
+import { Box, Typography } from "@mui/material";
+import { AccountBox } from '@mui/icons-material';
+
+
+export default function Clients() {
+
+    const menus = ['Criar Cliente', 'Visualizar Clientes', 'Atualizar Cliente', 'Excluir Cliente'];
+
+    return (
+        <Box color='primary.light' sx={{ width: '100vw', height: '100vh', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column' }}>
+            <Header />
+
+            <Box sx={{
+                backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px', flexGrow: 1, 
+            }} >
+                <Box sx={{ backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <AccountBox sx={{ fontSize: 50 }} color='secondary' />
+                    <Typography fontSize={50}>Clientes</Typography>
+                </Box>
+
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', '@media (max-width: 1200px)': {
+                    flexDirection: 'column',
+                }, }}>
+                {menus.map((menu, index) => {
+                    return (
+                        <OutlinedCard menu={menu} key={index} />
+                    )
+                })}
+                </Box>
+                <Box />
+            </Box>
+        </Box>
+    )
+}
