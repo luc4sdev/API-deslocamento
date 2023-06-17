@@ -29,7 +29,7 @@ export default function RootLayout({
   children: ReactNode
 }) {
 
-  const isBrowserDefaulDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+  /*const isBrowserDefaulDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   const getDefaultTheme = (): string => {
     const browserDefault = isBrowserDefaulDark() ? 'dark' : 'light';
@@ -39,8 +39,8 @@ export default function RootLayout({
     return localStorageTheme || browserDefault;
 
   };
-
-  const [newTheme, setNewTheme] = useState(getDefaultTheme());
+*/
+  const [newTheme, setNewTheme] = useState('dark');
   return (
     
     <html lang="en">
