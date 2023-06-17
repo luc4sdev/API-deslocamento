@@ -62,23 +62,21 @@ export function Header() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <Link href='/clients'>
+        <Link style={{ textDecoration: 'none', color: '#000'}} href='/clients'>
         <MenuItem onClick={handleClose}>Clientes</MenuItem>
         </Link>
-        <Link href='/conductors'>
+        <Link style={{ textDecoration: 'none', color: '#000'}} href='/conductors'>
         <MenuItem onClick={handleClose}>Condutores</MenuItem>
         </Link>
-        <Link href='/displacements'>
+        <Link style={{ textDecoration: 'none', color: '#000'}} href='/displacements'>
         <MenuItem onClick={handleClose}>Deslocamentos</MenuItem>
         </Link>
-        <Link href='/vehicles'>
+        <Link style={{ textDecoration: 'none', color: '#000'}} href='/vehicles'>
         <MenuItem onClick={handleClose}>Veículos</MenuItem>
         </Link>
        
       </Menu>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          API - Deslocamento
-          </Typography>
+          <Typography fontSize={20} color='secondary' sx={{ flexGrow: 1 }}>API - Deslocamento</Typography>
           <FormGroup >
       <FormControlLabel control={<Switch onChange={handleChange} color="secondary" defaultChecked />} label={checked ? <Brightness3Icon/> : <WbSunnyIcon />} />
     </FormGroup>

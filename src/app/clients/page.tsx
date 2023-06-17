@@ -4,6 +4,7 @@ import { Header } from "@/components/Header/Header";
 import { OutlinedCard } from "@/components/OutlinedCard/OutlinedCard";
 import { Box, Typography } from "@mui/material";
 import { AccountBox } from '@mui/icons-material';
+import { StyledBox } from "../layout";
 
 
 export default function Clients() {
@@ -27,7 +28,9 @@ export default function Clients() {
                 }, }}>
                 {menus.map((menu, index) => {
                     return (
-                        <OutlinedCard menu={menu} key={index} />
+                        <StyledBox  key={index}>
+                        <OutlinedCard menu={menu} />
+                      </StyledBox>
                     )
                 })}
                 </Box>

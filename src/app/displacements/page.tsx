@@ -4,6 +4,7 @@ import { Header } from "@/components/Header/Header";
 import { Box, Typography } from "@mui/material";
 import { SwapVert } from '@mui/icons-material';
 import { OutlinedCard } from "@/components/OutlinedCard/OutlinedCard";
+import { StyledBox } from "../layout";
 
 export default function Displacements() {
 
@@ -26,7 +27,9 @@ export default function Displacements() {
                 }, }}>
                 {menus.map((menu, index) => {
                     return (
-                        <OutlinedCard menu={menu} key={index} />
+                        <StyledBox  key={index}>
+                        <OutlinedCard menu={menu} />
+                      </StyledBox>
                     )
                 })}
                 </Box>

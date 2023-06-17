@@ -39,6 +39,16 @@ interface Vehicle {
 type RequestBody = Client | Conductor | Displacement | Vehicle;
 
 
+export async function getServerSideProps(clientId: string) {
+
+    const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Cliente/${clientId}`)
+
+    if(!data.ok) throw new Error('Error to fetch data')
+
+    return data.json();
+
+}
+
 export const postData = async (url: string, requestBody: RequestBody) => {
 
     const response = await fetch(url, {

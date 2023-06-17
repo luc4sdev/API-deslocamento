@@ -15,9 +15,13 @@ interface Conductor {
         vencimentoHabilitacao: Date;
 }
 
+interface Params {
+    params: {
+        conductorId: string;
+    }
+}
 
-
-export async function getConductor(params: {
+/*export async function getConductor(params: {
     conductorId: string;
 }) {
 
@@ -44,23 +48,25 @@ export async function generateStaticParams() {
     
     return {paths, fallback: false}
 }
+*/
 
-
-export default function Conductor({ params }: any) {
+export default function Conductor({ params: { conductorId } }: Params) {
 
     const [conductor, setConductor] = useState<Conductor>();
     const buttonOff = true;
 
+    
     useEffect(() => {
-        getConductor(params)
+       
+        fetch(`https://api-deslocamento.herokuapp.com/api/v1/Condutor/${conductorId}`)
+        .then((response) => response.json())
         .then((data) => {
             setConductor(data);
         })
         .catch((error) => {
           console.error("Erro:", error);
         });
-    }, [params]);
-  
+    }, [])
 
     return (
         <Box color='primary.light' sx={{ width: '100vw', height: '100vh', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column' }}>

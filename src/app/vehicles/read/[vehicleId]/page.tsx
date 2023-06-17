@@ -16,8 +16,12 @@ interface Vehicle {
 }
 
 
-
-export async function getVehicle(params:  {
+interface Params {
+    params: {
+        vehicleId: string;
+    }
+}
+/*export async function getVehicle(params:  {
     vehicleId: string;
 }) {
 
@@ -45,21 +49,24 @@ export async function generateStaticParams() {
     return {paths, fallback: false}
 }
 
-
-export default function Vehicle({ params } : any) {
+*/
+export default function Vehicle({ params: { vehicleId } }: Params) {
 
     const [vehicle, setVehicle] = useState<Vehicle>();
     const buttonOff = true;
 
     useEffect(() => {
-        getVehicle(params)
+       
+        fetch(`https://api-deslocamento.herokuapp.com/api/v1/Veiculo/${vehicleId}`)
+        .then((response) => response.json())
         .then((data) => {
-            setVehicle(data);
+            setVehicle (data);
         })
         .catch((error) => {
           console.error("Erro:", error);
         });
-    }, [params]);
+    }, []);
+  
   
 
     return (

@@ -14,6 +14,11 @@ export const theme = createTheme({
     }
  
   },
+  typography: {
+    fontFamily: 'Poppins, sans-serif',
+    fontWeightRegular: 700,
+    fontWeightBold: 800,
+  },
  });
 
 export const darkTheme = createTheme({
@@ -28,4 +33,9 @@ export const darkTheme = createTheme({
   }
 
  },
+ typography: {
+  fontFamily: 'Poppins, sans-serif',
+  fontWeightRegular: 700,
+  fontWeightBold: 800,
+},
 });

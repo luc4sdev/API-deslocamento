@@ -21,9 +21,13 @@ interface Displacement {
         idCliente: number;
 }
 
+interface Params {
+    params: {
+        displacementId: string;
+    }
+}
 
-
-export async function getDisplacement(params: {
+/*export async function getDisplacement(params: {
     displacementId: string;
 }) {
 
@@ -50,22 +54,24 @@ export async function generateStaticParams() {
     
     return {paths, fallback: false}
 }
+*/
 
-
-export default function Displacement({ params } : any) {
+export default function Displacement({ params: { displacementId } }: Params) {
 
     const [displacement, setDisplacement] = useState<Displacement>();
     const buttonOff = true;
 
     useEffect(() => {
-        getDisplacement(params)
+       
+        fetch(`https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/${displacementId}`)
+        .then((response) => response.json())
         .then((data) => {
-            setDisplacement(data);
+            setDisplacement (data);
         })
         .catch((error) => {
           console.error("Erro:", error);
         });
-    }, [params]);
+    }, []);
   
 
     return (
