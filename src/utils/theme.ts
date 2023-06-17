@@ -6,11 +6,11 @@ export const theme = createTheme({
   palette: {
     primary: {
      light: "#010101",
-      main: "#ffff",
-      dark: "#c1c1c1"
+      main: "##FAFAFA",
+      dark: "#ffff"
     },
     secondary: {
-      main: "#005792"
+      main: "#892CDC"
     }
  
   },
@@ -25,11 +25,11 @@ export const darkTheme = createTheme({
  palette: {
    primary: {
     light: "#ffff",
-     main: "#4b4848",
-     dark: "#2e2929"
+     main: "#393E46",
+     dark: "#222831"
    },
    secondary: {
-    main: "#005792"
+    main: "#892CDC"
   }
 
  },

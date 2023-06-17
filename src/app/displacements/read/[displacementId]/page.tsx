@@ -27,34 +27,6 @@ interface Params {
     }
 }
 
-/*export async function getDisplacement(params: {
-    displacementId: string;
-}) {
-
-    const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/${params.displacementId}`)
-
-    const displacement = await data.json()
-
-    return displacement
-
-}
-
-export async function generateStaticParams() {
-    const response = await fetch('https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/')
-
-    const data = await response.json()
-
-    const paths = data.map((displacements: Displacement) => {
-        return {
-            params: {
-                displacementId: String(displacements.id)
-            }
-        }
-    })
-    
-    return {paths, fallback: false}
-}
-*/
 
 export default function Displacement({ params: { displacementId } }: Params) {
 

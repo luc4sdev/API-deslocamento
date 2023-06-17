@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
+import { Grow } from '@mui/material';
 
 interface BasicCardProps {
   client?: {
@@ -51,6 +52,11 @@ interface BasicCardProps {
 
 export function BasicCard({ client, conductor, displacement, vehicle, buttonOff }: BasicCardProps) {
   return (
+    <Grow
+    in={true}
+    style={{ transformOrigin: '0 0 0' }}
+    {...(true ? { timeout: 1000 } : {})}
+  >
     <Card sx={{ backgroundColor: 'primary.dark' }}>
       {client && (
         <>
@@ -85,7 +91,7 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
           <CardActions>
             {!buttonOff && (
               <Link href={`/clients/read/${client.id}`}>
-                <Button variant="contained" color='secondary' size="small" >Ver cliente</Button>
+                <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800'}} >Ver cliente</Button>
               </Link>
 
             )}
@@ -116,7 +122,7 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
           <CardActions>
             {!buttonOff && (
             <Link href={`/conductors/read/${conductor.id}`}>
-            <Button variant="contained" color='secondary' size="small" >Ver condutor</Button>
+            <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800'}} >Ver condutor</Button>
           </Link>
             )}
           </CardActions>
@@ -163,7 +169,7 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
           <CardActions>
             {!buttonOff && (
               <Link href={`/displacements/read/${displacement.id}`}>
-              <Button variant="contained" color='secondary' size="small" >Ver deslocamento</Button>
+              <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800'}} >Ver deslocamento</Button>
             </Link>
             )}
           </CardActions>
@@ -191,12 +197,13 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
           <CardActions>
             {!buttonOff && (
               <Link href={`/vehicles/read/${vehicle.id}`}>
-              <Button variant="contained" color='secondary' size="small" >Ver veículo</Button>
+              <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800'}} >Ver veículo</Button>
             </Link>
             )}
           </CardActions>
         </>
       )}
     </Card>
+    </Grow>
   );
 }

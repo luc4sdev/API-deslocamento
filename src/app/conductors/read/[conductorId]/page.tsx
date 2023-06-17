@@ -21,34 +21,6 @@ interface Params {
     }
 }
 
-/*export async function getConductor(params: {
-    conductorId: string;
-}) {
-
-    const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Condutor/${params.conductorId}`)
-
-    const conductor = await data.json()
-
-    return conductor
-
-}
-
-export async function generateStaticParams() {
-    const response = await fetch('https://api-deslocamento.herokuapp.com/api/v1/Condutor/')
-
-    const data = await response.json()
-
-    const paths = data.map((conductor: Conductor) => {
-        return {
-            params: {
-                conductorId: String(conductor.id)
-            }
-        }
-    })
-    
-    return {paths, fallback: false}
-}
-*/
 
 export default function Conductor({ params: { conductorId } }: Params) {
 

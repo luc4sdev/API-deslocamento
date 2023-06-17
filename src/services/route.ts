@@ -1,3 +1,5 @@
+import axios from "axios";
+
 interface Client {
     numeroDocumento: string;
     tipoDocumento: string;
@@ -39,41 +41,40 @@ interface Vehicle {
 type RequestBody = Client | Conductor | Displacement | Vehicle;
 
 
-export async function getServerSideProps(clientId: string) {
-
-    const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Cliente/${clientId}`)
-
-    if(!data.ok) throw new Error('Error to fetch data')
-
-    return data.json();
-
-}
+export const fetchData = async (url: string, id: number) => {
+    try {
+      const response = await axios.get(`${url}/${id}`);
+      const data = response.data;
+      console.log('Dados recebidos:', data);
+      return data;
+    } catch (error) {
+      console.error('Erro ao buscar os dados', error);
+      return false;
+    }
+  };
 
 export const postData = async (url: string, requestBody: RequestBody) => {
+    try {
+    const response = await axios.post(url, requestBody);
 
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-    });
-
-    const newClient = await response.json();
+    const newClient = response.data;
     console.log(newClient);
+    } catch (error) {
+        console.error('Falha ao criar novo registro', error);
+    }
 };
 
 
-export const deleteData = async (url: string, id: string) => {
+export const deleteData = async (url: string, id: number) => {
 
-    const response = await fetch(`${url}/${id}`, {
-        method: 'DELETE',
-    });
-
-    if (response.ok) {
+    try {
+        await axios.delete(`${url}/${id}`, {
+            data: { id },
+        });
         console.log('Recurso excluído com sucesso');
-    } else {
-        console.log('Falha ao excluir o recurso');
+    } catch (error) {
+        console.error('Falha ao excluir o recurso', error);
+        return false;
     }
 };
 

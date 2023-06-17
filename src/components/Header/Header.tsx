@@ -13,14 +13,18 @@ import Switch from '@mui/material/Switch';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import { ThemeContext } from '@/contexts/theme-context';
-import { Menu, MenuItem } from '@mui/material';
+import { Menu, MenuItem, useMediaQuery } from '@mui/material';
 import Link from 'next/link';
+import DrawerMenu from '../Drawer/Drawer';
 
 
 export function Header() {
 
     const { newTheme, setNewTheme } = useContext(ThemeContext);
     const [checked, setChecked] = useState(true);
+
+  const matches = useMediaQuery('(max-width:370px)');
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -29,15 +33,26 @@ export function Header() {
     localStorage.setItem('default-theme', isCurrentDark ? 'light' : 'dark');
   };
 
+  
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const handleDrawer = () => {
+    setOpenDrawer(!openDrawer);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+
+  const toggleDrawer = (open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
+      setOpenDrawer(open);
+    };
+
 
     return (
     <Box>
@@ -49,34 +64,12 @@ export function Header() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={handleClick}
+            onClick={handleDrawer}
           >
             <MenuIcon />
           </IconButton>
-          <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <Link style={{ textDecoration: 'none', color: '#000'}} href='/clients'>
-        <MenuItem onClick={handleClose}>Clientes</MenuItem>
-        </Link>
-        <Link style={{ textDecoration: 'none', color: '#000'}} href='/conductors'>
-        <MenuItem onClick={handleClose}>Condutores</MenuItem>
-        </Link>
-        <Link style={{ textDecoration: 'none', color: '#000'}} href='/displacements'>
-        <MenuItem onClick={handleClose}>Deslocamentos</MenuItem>
-        </Link>
-        <Link style={{ textDecoration: 'none', color: '#000'}} href='/vehicles'>
-        <MenuItem onClick={handleClose}>Veículos</MenuItem>
-        </Link>
-       
-      </Menu>
-          <Typography fontSize={20} color='secondary' sx={{ flexGrow: 1 }}>API - Deslocamento</Typography>
+         <DrawerMenu openDrawer={openDrawer} toggleDrawer={toggleDrawer}/>
+          <Typography fontSize={20} color='secondary.main' sx={{ flexGrow: 1 }}>{matches ? 'API' : 'API - Deslocamento'}</Typography>
           <FormGroup >
       <FormControlLabel control={<Switch onChange={handleChange} color="secondary" defaultChecked />} label={checked ? <Brightness3Icon/> : <WbSunnyIcon />} />
     </FormGroup>

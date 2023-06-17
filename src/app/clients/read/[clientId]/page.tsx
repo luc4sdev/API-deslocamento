@@ -2,10 +2,8 @@
 
 import { BasicCard } from "@/components/BasicCard/BasicCard";
 import { Header } from "@/components/Header/Header";
-import { getServerSideProps } from "@/services/route";
 import { AccountBox } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
-import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
@@ -29,29 +27,10 @@ interface Params {
 
 
 
-/*export async function generateStaticParams() {
-    const response = await fetch('https://api-deslocamento.herokuapp.com/api/v1/Cliente/')
-
-    const data = await response.json()
-
-    const paths = data.map((client: Client) => {
-        return {
-            params: {
-                clientId: String(client.id)
-            }
-        }
-    })
-
-    return { paths, fallback: false }
-}
-*/
-
 export default function Client({ params: { clientId } }: Params) {
 
     const [client, setClient] = useState<Client>();
     const buttonOff = true;
-    //const clientData: Promise<Client> = getServerSideProps(clientId)
-    //const cli = await clientData;
 
     useEffect(() => {
        
@@ -64,17 +43,6 @@ export default function Client({ params: { clientId } }: Params) {
           console.error("Erro:", error);
         });
     }, [])
-
-    /*useEffect(() => {
-        getServerSideProps(params)
-        .then((data) => {
-          setClient(data);
-        })
-        .catch((error) => {
-          console.error("Erro:", error);
-        });
-    }, [params]);*/
-
 
     return (
         <Box color='primary.light' sx={{ width: '100vw', height: '100vh', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column' }}>

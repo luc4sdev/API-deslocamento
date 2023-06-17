@@ -74,6 +74,7 @@ export default function Create() {
                             id="outlined-required"
                             variant="outlined"
                             label="Km inicial"
+                            type="number"
                             color="secondary"
                             value={kmInicial}
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +96,7 @@ export default function Create() {
                             id="outlined-required"
                             variant="outlined"
                             label="Km final"
+                            type="number"
                             color="secondary"
                             value={kmFinal}
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

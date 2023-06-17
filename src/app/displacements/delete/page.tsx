@@ -3,7 +3,7 @@
 import { Header } from "@/components/Header/Header";
 import { ThemeContext } from "@/contexts/theme-context";
 import { deleteData } from "@/services/route";
-import { AccountBox } from "@mui/icons-material";
+import { SwapVert } from "@mui/icons-material";
 import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
@@ -25,14 +25,14 @@ export default function Delete() {
     async function handleDelete() {
         
         try {
-            const res = await deleteData('https://api-deslocamento.herokuapp.com/api/v1/Cliente', id)
+            const res = await deleteData('https://api-deslocamento.herokuapp.com/api/v1/Deslocamento', id)
             if(res === false) {
                 setError(true)
                 return;
             }
             setDeleted(true)
             const redirectTimeout = setTimeout(() => {
-                router.push('/clients'); 
+                router.push('/displacements'); 
               }, 2000); 
           
               return () => clearTimeout(redirectTimeout);
@@ -51,9 +51,9 @@ export default function Delete() {
                 backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px', flexGrow: 1,
             }} >
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <AccountBox sx={{ fontSize: 50 }} color='secondary' />
-                    <Typography fontSize={50} textAlign={'center'}>Deletar cliente</Typography>
-                    <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do cliente a ser deletado:</Typography>
+                    <SwapVert sx={{ fontSize: 50 }} color='secondary' />
+                    <Typography fontSize={50} textAlign={'center'}>Deletar deslocamento</Typography>
+                    <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do deslocamento a ser deletado:</Typography>
                     <TextField
                             
                             InputProps={{
@@ -79,7 +79,7 @@ export default function Delete() {
 
             {deleted ? 
                 <Alert variant="filled" severity="success">
-                    Cliente deletado com sucesso! Redirecionando...
+                    Deslocamento deletado com sucesso! Redirecionando...
                 </Alert>
                 : error ?
                 <Alert variant="filled" severity="error">

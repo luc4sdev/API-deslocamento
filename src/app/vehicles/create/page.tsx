@@ -105,6 +105,7 @@ export default function Create() {
                             id="outlined-required"
                             variant="outlined"
                             label="Ano de fabricação"
+                            type="number"
                             color="secondary"
                             value={anoFabricacao}
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -125,6 +126,7 @@ export default function Create() {
                             id="outlined-required"
                             variant="outlined"
                             label="Km atual"
+                            type="number"
                             color="secondary"
                             value={kmAtual}
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

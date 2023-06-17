@@ -1,41 +1,53 @@
 "use client";
 
+import { BasicCard } from "@/components/BasicCard/BasicCard";
 import { Header } from "@/components/Header/Header";
 import { ThemeContext } from "@/contexts/theme-context";
-import { deleteData } from "@/services/route";
+import { deleteData, fetchData } from "@/services/route";
 import { AccountBox } from "@mui/icons-material";
 import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
+interface Client {
+    id: number;
+    numeroDocumento: string;
+    tipoDocumento: string;
+    nome: string;
+    logradouro: string;
+    numero: string;
+    bairro: string;
+    cidade: string;
+    uf: string;
+}
 
-
-export default function Delete() {
+export default function Update() {
 
     const { newTheme } = useContext(ThemeContext);
 
     const [id, setId] = useState(0);
 
 
-
+    const [client, setClient] = useState<Client>()
+    const [clientFind, setClientFind] = useState(false)
     const [deleted, setDeleted] = useState(false)
     const [error, setError] = useState(false)
     const router = useRouter();
     
-    async function handleDelete() {
-        
+    async function handleSearch() {
         try {
-            const res = await deleteData('https://api-deslocamento.herokuapp.com/api/v1/Cliente', id)
+            setClientFind(false)
+            const res = await fetchData('https://api-deslocamento.herokuapp.com/api/v1/Cliente', id)
             if(res === false) {
                 setError(true)
                 return;
             }
+            setClient(res);
+            setClientFind(true)
             setDeleted(true)
-            const redirectTimeout = setTimeout(() => {
-                router.push('/clients'); 
-              }, 2000); 
           
-              return () => clearTimeout(redirectTimeout);
+          
+   
         } catch (error) {
             console.error('Falha ao excluir o recurso', error);
             setError(true)
@@ -52,8 +64,8 @@ export default function Delete() {
             }} >
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <AccountBox sx={{ fontSize: 50 }} color='secondary' />
-                    <Typography fontSize={50} textAlign={'center'}>Deletar cliente</Typography>
-                    <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do cliente a ser deletado:</Typography>
+                    <Typography fontSize={50} textAlign={'center'}>Atualizar cliente</Typography>
+                    <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do cliente a ser atualizado:</Typography>
                     <TextField
                             
                             InputProps={{
@@ -73,7 +85,13 @@ export default function Delete() {
                         />
                 </Box>
 
-                <Button variant="contained" color="secondary" size="large" onClick={() => handleDelete()}>Deletar</Button>
+                <Button variant="contained" color="secondary" size="large" onClick={() => handleSearch()}>Buscar</Button>
+
+                <Box>
+                    {clientFind ?
+                        <BasicCard client={client} />
+                    : ''}
+                </Box>
                 <Box />
             </Box>
 

@@ -21,35 +21,8 @@ interface Params {
         vehicleId: string;
     }
 }
-/*export async function getVehicle(params:  {
-    vehicleId: string;
-}) {
 
-    const data = await fetch(`https://api-deslocamento.herokuapp.com/api/v1/Veiculo/${params.vehicleId}`)
 
-    const vehicle = await data.json()
-
-    return vehicle
-
-}
-
-export async function generateStaticParams() {
-    const response = await fetch('https://api-deslocamento.herokuapp.com/api/v1/Veiculo/')
-
-    const data = await response.json()
-
-    const paths = data.map((displacements: Vehicle) => {
-        return {
-            params: {
-                vehicleId: String(displacements.id)
-            }
-        }
-    })
-    
-    return {paths, fallback: false}
-}
-
-*/
 export default function Vehicle({ params: { vehicleId } }: Params) {
 
     const [vehicle, setVehicle] = useState<Vehicle>();
