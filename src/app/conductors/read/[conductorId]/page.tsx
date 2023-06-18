@@ -12,7 +12,7 @@ interface Conductor {
         nome: string;
         numeroHabilitacao: string;
         categoriaHabilitacao: string;
-        vencimentoHabilitacao: Date;
+        vencimentoHabilitacao: string;
 }
 
 interface Params {
