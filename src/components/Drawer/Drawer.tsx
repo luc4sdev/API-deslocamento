@@ -22,7 +22,6 @@ export default function DrawerMenu({openDrawer, toggleDrawer } : DrawerMenuProps
 const drawerWidth = 240;
 const router = useRouter();
 const pathname = usePathname()
-console.log(pathname)
 
 
     function handleClickButton(text: string) {

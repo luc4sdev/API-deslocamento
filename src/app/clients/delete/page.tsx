@@ -21,26 +21,29 @@ export default function Delete() {
     const [deleted, setDeleted] = useState(false)
     const [error, setError] = useState(false)
     const router = useRouter();
-    
+
     async function handleDelete() {
-        
+
         try {
             const res = await deleteData('https://api-deslocamento.herokuapp.com/api/v1/Cliente', id)
-            if(res === false) {
+            if (res === false) {
                 setError(true)
-                return;
+                const timeout = setTimeout(() => {
+                    setError(false);
+                }, 2000);
+                return () => clearTimeout(timeout);
             }
             setDeleted(true)
             const redirectTimeout = setTimeout(() => {
-                router.push('/clients'); 
-              }, 2000); 
-          
-              return () => clearTimeout(redirectTimeout);
+                router.push('/clients');
+            }, 2000);
+
+            return () => clearTimeout(redirectTimeout);
         } catch (error) {
             console.error('Falha ao excluir o recurso', error);
             setError(true)
         }
-       
+
     }
 
     return (
@@ -55,37 +58,37 @@ export default function Delete() {
                     <Typography fontSize={50} textAlign={'center'}>Deletar cliente</Typography>
                     <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do cliente a ser deletado:</Typography>
                     <TextField
-                            
-                            InputProps={{
-                                style: { color: newTheme === 'dark' ? 'white' : 'black' }
-                            }}
-                            InputLabelProps={{
-                                style: { color: newTheme === 'dark' ? 'white' : 'black' },
-                            }}
-                            id="outlined-required"
-                            variant="outlined"
-                            label="ID"  
-                            color="secondary"
-                            value={id}
-                            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                setId(Number(event.target.value));
-                            }}
-                        />
+
+                        InputProps={{
+                            style: { color: newTheme === 'dark' ? 'white' : 'black' }
+                        }}
+                        InputLabelProps={{
+                            style: { color: newTheme === 'dark' ? 'white' : 'black' },
+                        }}
+                        id="outlined"
+                        variant="outlined"
+                        label="ID"
+                        color="secondary"
+                        value={id}
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                            setId(Number(event.target.value));
+                        }}
+                    />
                 </Box>
 
-                <Button variant="contained" color="secondary" size="large" onClick={() => handleDelete()}>Deletar</Button>
+                <Button variant="contained" color="secondary" size="large" sx={{ fontWeight: '600' }} onClick={() => handleDelete()}>Deletar</Button>
                 <Box />
             </Box>
 
-            {deleted ? 
+            {deleted ?
                 <Alert variant="filled" severity="success">
                     Cliente deletado com sucesso! Redirecionando...
                 </Alert>
                 : error ?
-                <Alert variant="filled" severity="error">
-                    Houve um erro. Verifique se o ID digitado é válido.
-                </Alert>
-                : ''
+                    <Alert variant="filled" severity="error">
+                        Houve um erro. Verifique se o ID digitado é válido.
+                    </Alert>
+                    : ''
             }
         </Box>
     )

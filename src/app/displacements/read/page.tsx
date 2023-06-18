@@ -35,7 +35,7 @@ export default function Read() {
     }} >
         <Box sx={{ backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <SwapVert sx={{ fontSize: 50 }} color='secondary' />
-            <Typography fontSize={50} textAlign={'center'}>Visualizar deslocamentos</Typography>
+            <Typography fontSize={30} textAlign={'center'}>Visualizar deslocamentos</Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Grid container spacing={{ xs: 2, md: 3 }} padding={5} columns={{ xs: 2, sm: 2, md: 6 }} justifyContent={'center'}>

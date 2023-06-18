@@ -15,12 +15,13 @@ export default function Create() {
     const { newTheme } = useContext(ThemeContext);
 
     const [kmInicial, setKmInicial] = useState(0);
-    const [kmFinal, setKmFinal] = useState(0);
     const [checkList, setCheckList] = useState('');
     const [motivo, setMotivo] = useState('');
     const [observacao, setObservacao] = useState('');
 
     const [created, setCreated] = useState(false)
+    const [error, setError] = useState(false)
+
     const router = useRouter();
 
     async function handleCreateDisplacement() {
@@ -28,9 +29,7 @@ export default function Create() {
         const formattedDate = currentDate.toISOString();
         const requestBody = {
             kmInicial: kmInicial,
-            kmFinal: kmFinal,
             inicioDeslocamento: formattedDate,
-            fimDeslocamento: formattedDate,
             checkList: checkList,
             motivo: motivo,
             observacao: observacao,
@@ -39,13 +38,28 @@ export default function Create() {
             idCliente: 0,
         };
 
-        await postData('https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/IniciarDeslocamento', requestBody)
-        setCreated(true)
-        const redirectTimeout = setTimeout(() => {
-            router.push('/displacements'); 
-          }, 2000); 
-      
-          return () => clearTimeout(redirectTimeout);
+        try {
+
+
+
+            const res = await postData('https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/IniciarDeslocamento', requestBody)
+            if (res === false) {
+                setError(true)
+                const timeout = setTimeout(() => {
+                    setError(false);
+                }, 2000);
+                return () => clearTimeout(timeout);
+            }
+            setCreated(true)
+            const redirectTimeout = setTimeout(() => {
+                router.push('/displacements');
+            }, 2000);
+
+            return () => clearTimeout(redirectTimeout);
+        } catch (error) {
+            console.error('Falha ao criar o recurso', error);
+            setError(true)
+        }
     }
 
 
@@ -64,14 +78,14 @@ export default function Create() {
                 <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 2, sm: 2, md: 6 }} justifyContent={'center'} maxWidth='600px'>
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Km inicial"
                             type="number"
@@ -85,35 +99,14 @@ export default function Create() {
 
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
-                            InputProps={{
-                                style: { color: newTheme === 'dark' ? 'white' : 'black' }
 
-                            }}
-                            InputLabelProps={{
-                                style: { color: newTheme === 'dark' ? 'white' : 'black' },
-                            }}
-                            id="outlined-required"
-                            variant="outlined"
-                            label="Km final"
-                            type="number"
-                            color="secondary"
-                            value={kmFinal}
-                            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                setKmFinal(Number(event.target.value));
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <TextField
-                            required
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Checklist"
                             color="secondary"
@@ -126,14 +119,14 @@ export default function Create() {
 
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Motivo"
                             color="secondary"
@@ -146,14 +139,14 @@ export default function Create() {
 
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Observação"
                             color="secondary"
@@ -164,14 +157,19 @@ export default function Create() {
                         />
                     </Grid>
                 </Grid>
-                <Button variant="contained" color="secondary" size="large" onClick={() => handleCreateDisplacement()}>Criar</Button>
+                <Button variant="contained" color="secondary" size="large" sx={{ fontWeight: '600' }} onClick={() => handleCreateDisplacement()}>Criar</Button>
                 <Box />
             </Box>
-            {created && (
+            {created ?
                 <Alert variant="filled" severity="success">
                     Deslocamento criado com sucesso! Redirecionando...
                 </Alert>
-            )}
+                : error ?
+                    <Alert variant="filled" severity="error">
+                        Houve um erro.
+                    </Alert>
+                    : ''
+            }
         </Box>
     )
 }

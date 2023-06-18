@@ -24,8 +24,10 @@ export default function Create() {
     const [uf, setUf] = useState('');
 
     const [created, setCreated] = useState(false)
+    const [error, setError] = useState(false)
+
     const router = useRouter();
-    
+
     async function handleCreateClient() {
         const requestBody = {
             nome: nome,
@@ -37,13 +39,26 @@ export default function Create() {
             cidade: cidade,
             uf: uf,
         };
-        await postData('https://api-deslocamento.herokuapp.com/api/v1/Cliente', requestBody)
-        setCreated(true)
-        const redirectTimeout = setTimeout(() => {
-            router.push('/clients'); 
-          }, 2000); 
-      
-          return () => clearTimeout(redirectTimeout);
+
+        try {
+            const res = await postData('https://api-deslocamento.herokuapp.com/api/v1/Cliente', requestBody)
+            if (res === false) {
+                setError(true)
+                const timeout = setTimeout(() => {
+                    setError(false);
+                }, 2000);
+                return () => clearTimeout(timeout);
+            }
+            setCreated(true)
+            const redirectTimeout = setTimeout(() => {
+                router.push('/clients');
+            }, 2000);
+
+            return () => clearTimeout(redirectTimeout);
+        } catch (error) {
+            console.error('Falha ao criar o recurso', error);
+            setError(true)
+        }
     }
 
     return (
@@ -61,14 +76,14 @@ export default function Create() {
                 <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 2, sm: 2, md: 6 }} justifyContent={'center'} maxWidth='600px'>
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Nome"
                             color="secondary"
@@ -81,7 +96,7 @@ export default function Create() {
 
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
 
@@ -89,7 +104,7 @@ export default function Create() {
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Número do documento"
                             color="secondary"
@@ -101,14 +116,14 @@ export default function Create() {
                     </Grid>
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Tipo do documento"
                             color="secondary"
@@ -121,14 +136,14 @@ export default function Create() {
 
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Logradouro"
                             color="secondary"
@@ -141,14 +156,14 @@ export default function Create() {
 
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Número"
                             color="secondary"
@@ -161,14 +176,14 @@ export default function Create() {
 
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Bairro"
                             color="secondary"
@@ -181,14 +196,14 @@ export default function Create() {
 
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="Cidade"
                             color="secondary"
@@ -200,14 +215,14 @@ export default function Create() {
                     </Grid>
                     <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <TextField
-                            required
+
                             InputProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' }
                             }}
                             InputLabelProps={{
                                 style: { color: newTheme === 'dark' ? 'white' : 'black' },
                             }}
-                            id="outlined-required"
+                            id="outlined"
                             variant="outlined"
                             label="UF"
                             color="secondary"
@@ -218,15 +233,20 @@ export default function Create() {
                         />
                     </Grid>
                 </Grid>
-                <Button variant="contained" color="secondary" size="large" onClick={() => handleCreateClient()}>Criar</Button>
+                <Button variant="contained" color="secondary" size="large" sx={{ fontWeight: '600' }} onClick={() => handleCreateClient()}>Criar</Button>
                 <Box />
             </Box>
 
-            {created && (
+            {created ?
                 <Alert variant="filled" severity="success">
                     Cliente criado com sucesso! Redirecionando...
                 </Alert>
-            )}
+                : error ?
+                    <Alert variant="filled" severity="error">
+                        Houve um erro.
+                    </Alert>
+                    : ''
+            }
         </Box>
     )
 }

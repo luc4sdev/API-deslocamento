@@ -25,14 +25,14 @@ interface BasicCardProps {
     nome: string;
     numeroHabilitacao: string;
     categoriaHabilitacao: string;
-    vencimentoHabilitacao: Date;
+    vencimentoHabilitacao: string;
   },
   displacement?: {
     id: number;
     kmInicial: number;
     kmFinal: number;
-    inicioDeslocamento: Date;
-    fimDeslocamento: Date;
+    inicioDeslocamento: string;
+    fimDeslocamento: string;
     checkList: string;
     motivo: string;
     observacao: string;
@@ -57,7 +57,7 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
     style={{ transformOrigin: '0 0 0' }}
     {...(true ? { timeout: 1000 } : {})}
   >
-    <Card sx={{ backgroundColor: 'primary.dark' }}>
+    <Card sx={{ backgroundColor: 'primary.dark', minWidth: 275, minHeight: 250, position: 'relative' }} >
       {client && (
         <>
           <CardContent>
@@ -91,7 +91,10 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
           <CardActions>
             {!buttonOff && (
               <Link href={`/clients/read/${client.id}`}>
-                <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800'}} >Ver cliente</Button>
+                <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800', position: 'absolute',
+          bottom: '8px',
+          left: '50%',
+          transform: 'translateX(-50%)',}} >Ver cliente</Button>
               </Link>
 
             )}
@@ -122,7 +125,10 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
           <CardActions>
             {!buttonOff && (
             <Link href={`/conductors/read/${conductor.id}`}>
-            <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800'}} >Ver condutor</Button>
+            <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800', position: 'absolute',
+          bottom: '8px',
+          left: '50%',
+          transform: 'translateX(-50%)',}} >Ver condutor</Button>
           </Link>
             )}
           </CardActions>
@@ -169,7 +175,10 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
           <CardActions>
             {!buttonOff && (
               <Link href={`/displacements/read/${displacement.id}`}>
-              <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800'}} >Ver deslocamento</Button>
+              <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800', position: 'absolute',
+          bottom: '8px',
+          left: '50%',
+          transform: 'translateX(-50%)',}} >Ver deslocamento</Button>
             </Link>
             )}
           </CardActions>
@@ -197,7 +206,10 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
           <CardActions>
             {!buttonOff && (
               <Link href={`/vehicles/read/${vehicle.id}`}>
-              <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800'}} >Ver veículo</Button>
+              <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800', position: 'absolute',
+          bottom: '8px',
+          left: '50%',
+          transform: 'translateX(-50%)',}} >Ver veículo</Button>
             </Link>
             )}
           </CardActions>
