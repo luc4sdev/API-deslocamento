@@ -36,7 +36,7 @@ export default function Conductors() {
       }} >
         <Box sx={{ backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           <Person sx={{ fontSize: 50 }} color='secondary' />
-          <Typography fontSize={50}>Condutores</Typography>
+          <Typography fontSize={30}>Condutores</Typography>
         </Box>
 
         <Box sx={{

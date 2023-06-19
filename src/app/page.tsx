@@ -40,7 +40,7 @@ export default function Home() {
           <Typography fontSize={30} fontWeight='800'>{matches ? 'Deslocamento' : 'API - Deslocamento'}</Typography>
 
           <Box sx={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', '@media (max-width: 1250px)': {
+            backgroundColor: 'primary.main', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', '@media (max-width: 1250px)': {
               flexDirection: 'column',
             },
           }} >

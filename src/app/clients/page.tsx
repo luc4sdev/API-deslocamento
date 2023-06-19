@@ -37,7 +37,7 @@ export default function Clients() {
       }} >
         <Box sx={{ backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           <AccountBox sx={{ fontSize: 50 }} color='secondary' />
-          <Typography fontSize={50}>Clientes</Typography>
+          <Typography fontSize={30}>Clientes</Typography>
         </Box>
 
         <Box sx={{

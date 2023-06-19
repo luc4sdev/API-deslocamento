@@ -36,7 +36,7 @@ export default function Vehicles() {
       }} >
         <Box sx={{ backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           <DirectionsCar sx={{ fontSize: 50 }} color='secondary' />
-          <Typography fontSize={50}>Veículos</Typography>
+          <Typography fontSize={30}>Veículos</Typography>
         </Box>
 
         <Box sx={{

@@ -36,7 +36,7 @@ export default function Displacements() {
       }} >
         <Box sx={{ backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           <SwapVert sx={{ fontSize: 50 }} color='secondary' />
-          <Typography fontSize={50}>Deslocamentos</Typography>
+          <Typography fontSize={30}>Deslocamentos</Typography>
         </Box>
 
         <Box sx={{
