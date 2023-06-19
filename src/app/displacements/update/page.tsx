@@ -111,48 +111,48 @@ export default function Update() {
             }} >
                 {edit ?
                     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px' }} >
-                         <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 2, sm: 2, md: 6 }} justifyContent={'center'} maxWidth='600px'>
-                    <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <TextField
+                        <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 2, sm: 2, md: 6 }} justifyContent={'center'} maxWidth='600px'>
+                            <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <TextField
 
-                            InputProps={{
-                                style: { color: newTheme === 'dark' ? 'white' : 'black' }
-                            }}
-                            InputLabelProps={{
-                                style: { color: newTheme === 'dark' ? 'white' : 'black' },
-                            }}
-                            id="outlined"
-                            variant="outlined"
-                            label="Km final"
-                            type="number"
-                            color="secondary"
-                            value={kmFinal}
-                            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                setKmFinal(Number(event.target.value));
-                            }}
-                        />
-                    </Grid>
+                                    InputProps={{
+                                        style: { color: newTheme === 'dark' ? 'white' : 'black' }
+                                    }}
+                                    InputLabelProps={{
+                                        style: { color: newTheme === 'dark' ? 'white' : 'black' },
+                                    }}
+                                    id="outlined"
+                                    variant="outlined"
+                                    label="Km final"
+                                    type="number"
+                                    color="secondary"
+                                    value={kmFinal}
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                        setKmFinal(Number(event.target.value));
+                                    }}
+                                />
+                            </Grid>
 
-                    <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <TextField
+                            <Grid item xs={2} sm={2} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <TextField
 
-                            InputProps={{
-                                style: { color: newTheme === 'dark' ? 'white' : 'black' }
-                            }}
-                            InputLabelProps={{
-                                style: { color: newTheme === 'dark' ? 'white' : 'black' },
-                            }}
-                            id="outlined"
-                            variant="outlined"
-                            label="Observação"
-                            color="secondary"
-                            value={observacao}
-                            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                setObservacao(event.target.value);
-                            }}
-                        />
-                    </Grid>
-                    </Grid>
+                                    InputProps={{
+                                        style: { color: newTheme === 'dark' ? 'white' : 'black' }
+                                    }}
+                                    InputLabelProps={{
+                                        style: { color: newTheme === 'dark' ? 'white' : 'black' },
+                                    }}
+                                    id="outlined"
+                                    variant="outlined"
+                                    label="Observação"
+                                    color="secondary"
+                                    value={observacao}
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                        setObservacao(event.target.value);
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
                         <Button variant="contained" color="secondary" size="large" sx={{ fontWeight: '600' }} onClick={() => handleUpdate()}>Atualizar</Button>
                     </Box>
                     :

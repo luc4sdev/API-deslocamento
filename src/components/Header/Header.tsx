@@ -13,8 +13,7 @@ import Switch from '@mui/material/Switch';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import { ThemeContext } from '@/contexts/theme-context';
-import { Menu, MenuItem, useMediaQuery } from '@mui/material';
-import Link from 'next/link';
+import { useMediaQuery } from '@mui/material';
 import DrawerMenu from '../Drawer/Drawer';
 
 
@@ -68,7 +67,7 @@ export function Header() {
           >
             <MenuIcon />
           </IconButton>
-         <DrawerMenu openDrawer={openDrawer} toggleDrawer={toggleDrawer}/>
+         <DrawerMenu openDrawer={openDrawer} toggleDrawer={toggleDrawer} />
           <Typography fontSize={20} color='secondary.main' sx={{ flexGrow: 1 }}>{matches ? 'API' : 'API - Deslocamento'}</Typography>
           <FormGroup >
       <FormControlLabel control={<Switch onChange={handleChange} color="secondary" defaultChecked />} label={checked ? <Brightness3Icon/> : <WbSunnyIcon />} />

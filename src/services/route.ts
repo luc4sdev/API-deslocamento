@@ -53,6 +53,17 @@ export const postData = async (url: string, requestBody: RequestBody) => {
     }
 };
 
+export const fetchAllData = async (url: string) => {
+    try {
+        const response = await axios.get(url);
+        const data = response.data;
+        console.log('Dados recebidos:', data);
+        return data;
+    } catch (error) {
+        console.error('Erro ao buscar os dados', error);
+    }
+};
+
 export const fetchData = async (url: string, id: number) => {
     try {
         const response = await axios.get(`${url}/${id}`);

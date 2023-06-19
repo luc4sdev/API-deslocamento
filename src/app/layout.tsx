@@ -29,6 +29,7 @@ export default function RootLayout({
 }) {
 
   const [newTheme, setNewTheme] = useState('dark');
+  
   return (
     
     <html lang="en">
