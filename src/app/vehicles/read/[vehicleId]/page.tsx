@@ -1,20 +1,14 @@
 "use client";
 
-import { BasicCard } from "@/components/BasicCard/BasicCard";
-import { Header } from "@/components/Header/Header";
+import { BasicCard } from "@/components/BasicCard";
+import { Header } from "@/components/Header";
 import { fetchData } from "@/services/route";
+import { Vehicle } from "@/types/vehicle";
 import { DirectionsCar } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 
-interface Vehicle {
-    id: number;
-    placa: string;
-    marcaModelo: string;
-    anoFabricacao: number;
-    kmAtual: number;
-}
 
 
 interface Params {
@@ -26,7 +20,7 @@ interface Params {
 
 export default function Vehicle({ params: { vehicleId } }: Params) {
 
-    const [vehicle, setVehicle] = useState<Vehicle>();
+    const [vehicle, setVehicle] = useState<Vehicle | null>(null);
     const buttonOff = true;
 
     async function getData() {
@@ -44,18 +38,25 @@ export default function Vehicle({ params: { vehicleId } }: Params) {
         <Box color='primary.light' sx={{ width: '100vw', height: '100vh', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column' }}>
             <Header />
 
-            <Box sx={{
-                backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px', flexGrow: 1,
-            }} >
-                <Box sx={{ backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <DirectionsCar sx={{ fontSize: 50 }} color='secondary' />
-                    <Typography fontSize={30} textAlign={'center'}>Veículo {vehicle?.id}</Typography>
+            {vehicle === null ?
+                <Box sx={{
+                    backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px', flexGrow: 1,
+                }}><CircularProgress color="secondary" />
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <BasicCard vehicle={vehicle} buttonOff={buttonOff} />
+                :
+                <Box sx={{
+                    backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px', flexGrow: 1,
+                }} >
+                    <Box sx={{ backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <DirectionsCar sx={{ fontSize: 50 }} color='secondary' />
+                        <Typography fontSize={30} textAlign={'center'}>Veículo {vehicle?.id}</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <BasicCard vehicle={vehicle} buttonOff={buttonOff} />
+                    </Box>
+                    <Box />
                 </Box>
-                <Box />
-            </Box>
+            }
         </Box>
     )
 }

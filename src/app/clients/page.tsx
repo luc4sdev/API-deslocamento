@@ -1,7 +1,7 @@
 "use client";
 
-import { Header } from "@/components/Header/Header";
-import { OutlinedCard } from "@/components/OutlinedCard/OutlinedCard";
+import { Header } from "@/components/Header";
+import { OutlinedCard } from "@/components/OutlinedCard";
 import { Box, Typography } from "@mui/material";
 import { AccountBox } from '@mui/icons-material';
 import { StyledBox } from "../layout";

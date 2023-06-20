@@ -1,6 +1,6 @@
 "use client";
 
-import { Header } from "@/components/Header/Header";
+import { Header } from "@/components/Header";
 import { ThemeContext } from "@/contexts/theme-context";
 import { postData } from "@/services/route";
 import { Person } from "@mui/icons-material";
@@ -63,7 +63,7 @@ export default function Create() {
             }} >
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <Person sx={{ fontSize: 50 }} color='secondary' />
-                    <Typography fontSize={50} textAlign={'center'}>Criar condutor</Typography>
+                    <Typography fontSize={30} textAlign={'center'}>Criar condutor</Typography>
                 </Box>
 
                 <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 2, sm: 2, md: 6 }} justifyContent={'center'} maxWidth='600px'>

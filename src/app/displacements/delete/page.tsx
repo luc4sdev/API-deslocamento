@@ -1,6 +1,6 @@
 "use client";
 
-import { Header } from "@/components/Header/Header";
+import { Header } from "@/components/Header";
 import { ThemeContext } from "@/contexts/theme-context";
 import { deleteData } from "@/services/route";
 import { SwapVert } from "@mui/icons-material";
@@ -55,7 +55,7 @@ export default function Delete() {
             }} >
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <SwapVert sx={{ fontSize: 50 }} color='secondary' />
-                    <Typography fontSize={50} textAlign={'center'}>Deletar deslocamento</Typography>
+                    <Typography fontSize={30} textAlign={'center'}>Excluir deslocamento</Typography>
                     <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do deslocamento a ser deletado:</Typography>
                     <TextField
 
@@ -76,7 +76,7 @@ export default function Delete() {
                     />
                 </Box>
 
-                <Button variant="contained" color="secondary" size="large" sx={{ fontWeight: '600' }} onClick={() => handleDelete()}>Deletar</Button>
+                <Button variant="contained" color="secondary" size="large" sx={{ fontWeight: '600' }} onClick={() => handleDelete()}>Excluir</Button>
                 <Box />
             </Box>
 

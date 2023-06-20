@@ -1,21 +1,15 @@
 "use client";
 
-import { BasicCard } from "@/components/BasicCard/BasicCard";
-import { Header } from "@/components/Header/Header";
+import { BasicCard } from "@/components/BasicCard";
+import { Header } from "@/components/Header";
 import { ThemeContext } from "@/contexts/theme-context";
 import { fetchData, updateData } from "@/services/route";
+import { Vehicle } from "@/types/vehicle";
 import { DirectionsCar } from "@mui/icons-material";
 import { Alert, Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
-interface Vehicle {
-    id: number;
-    placa: string;
-    marcaModelo: string;
-    anoFabricacao: number;
-    kmAtual: number;
-}
 
 
 export default function Update() {
@@ -175,7 +169,7 @@ export default function Update() {
                     <>
                         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             <DirectionsCar sx={{ fontSize: 50 }} color='secondary' />
-                            <Typography fontSize={50} textAlign={'center'}>Atualizar veículo</Typography>
+                            <Typography fontSize={30} textAlign={'center'}>Atualizar veículo</Typography>
                             <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do veículo a ser atualizado:</Typography>
                             <TextField
 

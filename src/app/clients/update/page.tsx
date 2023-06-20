@@ -1,25 +1,16 @@
 "use client";
 
-import { BasicCard } from "@/components/BasicCard/BasicCard";
-import { Header } from "@/components/Header/Header";
+import { BasicCard } from "@/components/BasicCard";
+import { Header } from "@/components/Header";
 import { ThemeContext } from "@/contexts/theme-context";
 import { fetchData, updateData } from "@/services/route";
+import { Client } from "@/types/client";
 import { AccountBox } from "@mui/icons-material";
 import { Alert, Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
-interface Client {
-    id: number;
-    numeroDocumento: string;
-    tipoDocumento: string;
-    nome: string;
-    logradouro: string;
-    numero: string;
-    bairro: string;
-    cidade: string;
-    uf: string;
-}
+
 
 export default function Update() {
 
@@ -239,7 +230,7 @@ export default function Update() {
                     <>
                         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             <AccountBox sx={{ fontSize: 50 }} color='secondary' />
-                            <Typography fontSize={50} textAlign={'center'}>Atualizar cliente</Typography>
+                            <Typography fontSize={30} textAlign={'center'}>Atualizar cliente</Typography>
                             <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do cliente a ser atualizado:</Typography>
                             <TextField
 

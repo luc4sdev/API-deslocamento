@@ -1,21 +1,16 @@
 "use client";
 
-import { BasicCard } from "@/components/BasicCard/BasicCard";
-import { Header } from "@/components/Header/Header";
+import { BasicCard } from "@/components/BasicCard";
+import { Header } from "@/components/Header";
 import { ThemeContext } from "@/contexts/theme-context";
 import { fetchData, updateData } from "@/services/route";
+import { Conductor } from "@/types/conductor";
 import { Person } from "@mui/icons-material";
 import { Alert, Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
-interface Conductor {
-    id: number;
-    nome: string;
-    numeroHabilitacao: string;
-    categoriaHabilitacao: string;
-    vencimentoHabilitacao: string;
-}
+
 
 
 export default function Update() {
@@ -32,6 +27,8 @@ export default function Update() {
     const [error, setError] = useState(false)
     const buttonOff = true;
     const router = useRouter();
+
+    const [categoriaHabilitacao, setCategoriaHabilitacao] = useState('');
 
 
 
@@ -66,6 +63,7 @@ export default function Update() {
         const formattedDate = currentDate.toISOString();
         const requestBody = {
             id: id,
+            categoriaHabilitacao: categoriaHabilitacao,
             vencimentoHabilitacao: formattedDate
         };
 
@@ -101,14 +99,34 @@ export default function Update() {
             }} >
                 {edit ?
                     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '20px' }} >
-                        <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Atualizar vencimento da habilitação com a data atual?</Typography>
+                        <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 2, sm: 2, md: 6 }} justifyContent={'center'} maxWidth='600px'>
+                            <Grid item xs={2} sm={2} md={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <TextField
+
+                                    InputProps={{
+                                        style: { color: newTheme === 'dark' ? 'white' : 'black' }
+                                    }}
+                                    InputLabelProps={{
+                                        style: { color: newTheme === 'dark' ? 'white' : 'black' },
+                                    }}
+                                    id="outlined"
+                                    variant="outlined"
+                                    label="Categoria da habilitação"
+                                    color="secondary"
+                                    value={categoriaHabilitacao}
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                        setCategoriaHabilitacao(event.target.value);
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
                         <Button variant="contained" color="secondary" size="large" sx={{ fontWeight: '600' }} onClick={() => handleUpdate()}>Atualizar</Button>
                     </Box>
                     :
                     <>
                         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             <Person sx={{ fontSize: 50 }} color='secondary' />
-                            <Typography fontSize={50} textAlign={'center'}>Atualizar condutor</Typography>
+                            <Typography fontSize={30} textAlign={'center'}>Atualizar condutor</Typography>
                             <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do condutor a ser atualizado:</Typography>
                             <TextField
 

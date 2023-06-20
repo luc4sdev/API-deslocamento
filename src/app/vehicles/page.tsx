@@ -1,9 +1,9 @@
 "use client";
 
-import { Header } from "@/components/Header/Header";
+import { Header } from "@/components/Header";
 import { Box, Typography } from "@mui/material";
 import { DirectionsCar } from '@mui/icons-material';
-import { OutlinedCard } from "@/components/OutlinedCard/OutlinedCard";
+import { OutlinedCard } from "@/components/OutlinedCard";
 import { StyledBox } from "../layout";
 
 export default function Vehicles() {

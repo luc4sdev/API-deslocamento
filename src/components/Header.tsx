@@ -14,7 +14,7 @@ import Brightness3Icon from '@mui/icons-material/Brightness3';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import { ThemeContext } from '@/contexts/theme-context';
 import { useMediaQuery } from '@mui/material';
-import DrawerMenu from '../Drawer/Drawer';
+import DrawerMenu from './Drawer';
 
 
 export function Header() {

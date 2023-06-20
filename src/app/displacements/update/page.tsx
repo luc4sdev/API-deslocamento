@@ -1,27 +1,16 @@
 "use client";
 
-import { BasicCard } from "@/components/BasicCard/BasicCard";
-import { Header } from "@/components/Header/Header";
+import { BasicCard } from "@/components/BasicCard";
+import { Header } from "@/components/Header";
 import { ThemeContext } from "@/contexts/theme-context";
 import { fetchData, updateData } from "@/services/route";
+import { Displacement } from "@/types/displacement";
 import { SwapVert } from "@mui/icons-material";
 import { Alert, Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
-interface Displacement {
-    id: number;
-    kmInicial: number;
-    kmFinal: number;
-    inicioDeslocamento: string;
-    fimDeslocamento: string;
-    checkList: string;
-    motivo: string;
-    observacao: string;
-    idCondutor: number;
-    idVeiculo: number;
-    idCliente: number;
-}
+
 
 
 export default function Update() {
@@ -159,7 +148,7 @@ export default function Update() {
                     <>
                         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             <SwapVert sx={{ fontSize: 50 }} color='secondary' />
-                            <Typography fontSize={50} textAlign={'center'}>Atualizar deslocamento</Typography>
+                            <Typography fontSize={30} textAlign={'center'}>Atualizar deslocamento</Typography>
                             <Typography fontSize={20} marginTop={2} marginBottom={2} textAlign={'center'}>Digite o ID do deslocamento a ser atualizado:</Typography>
                             <TextField
 

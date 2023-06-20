@@ -6,58 +6,31 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import { Grow } from '@mui/material';
+import { Grow, useMediaQuery } from '@mui/material';
+import { Client } from '@/types/client';
+import { Conductor } from '@/types/conductor';
+import { Displacement } from '@/types/displacement';
+import { Vehicle } from '@/types/vehicle';
 
 interface BasicCardProps {
-  client?: {
-    id: number;
-    numeroDocumento: string;
-    tipoDocumento: string;
-    nome: string;
-    logradouro: string;
-    numero: string;
-    bairro: string;
-    cidade: string;
-    uf: string;
-  },
-  conductor?: {
-    id: number;
-    nome: string;
-    numeroHabilitacao: string;
-    categoriaHabilitacao: string;
-    vencimentoHabilitacao: string;
-  },
-  displacement?: {
-    id: number;
-    kmInicial: number;
-    kmFinal: number;
-    inicioDeslocamento: string;
-    fimDeslocamento: string;
-    checkList: string;
-    motivo: string;
-    observacao: string;
-    idCondutor: number;
-    idVeiculo: number;
-    idCliente: number;
-  },
-  vehicle?: {
-    id: number;
-    placa: string;
-    marcaModelo: string;
-    anoFabricacao: number;
-    kmAtual: number;
-  },
+  client?: Client,
+  conductor?: Conductor,
+  displacement?: Displacement,
+  vehicle?: Vehicle,
   buttonOff?: boolean;
 }
 
 export function BasicCard({ client, conductor, displacement, vehicle, buttonOff }: BasicCardProps) {
+
+  const matches = useMediaQuery('(max-width:576px)');
+
   return (
     <Grow
     in={true}
     style={{ transformOrigin: '0 0 0' }}
     {...(true ? { timeout: 1000 } : {})}
   >
-    <Card sx={{ backgroundColor: 'primary.dark', minWidth: 275, minHeight: 250, position: 'relative' }} >
+    <Card sx={{ backgroundColor: 'primary.dark', minWidth: 275, minHeight: matches ? 500 : 350, position: 'relative' }} >
       {client && (
         <>
           <CardContent>
@@ -176,7 +149,7 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
             {!buttonOff && (
               <Link href={`/displacements/read/${displacement.id}`}>
               <Button variant="contained" color='secondary' size="small" sx={{ fontWeight:'800', position: 'absolute',
-          bottom: '8px',
+          bottom: '2px',
           left: '50%',
           transform: 'translateX(-50%)',}} >Ver deslocamento</Button>
             </Link>

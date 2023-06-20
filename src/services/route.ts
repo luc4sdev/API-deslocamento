@@ -1,42 +1,9 @@
+import { Client } from "@/types/client";
+import { Conductor } from "@/types/conductor";
+import { Displacement } from "@/types/displacement";
+import { Vehicle } from "@/types/vehicle";
 import axios from "axios";
 
-interface Client {
-    numeroDocumento?: string;
-    tipoDocumento?: string;
-    nome: string;
-    logradouro: string;
-    numero: string;
-    bairro: string;
-    cidade: string;
-    uf: string;
-}
-
-interface Conductor {
-    nome?: string;
-    numeroHabilitacao?: string;
-    categoriaHabilitacao?: string;
-    vencimentoHabilitacao: string;
-}
-
-interface Displacement {
-    kmInicial?: number;
-    kmFinal?: number;
-    inicioDeslocamento?: string;
-    fimDeslocamento?: string;
-    checkList?: string;
-    motivo?: string;
-    observacao: string;
-    idCondutor?: number;
-    idVeiculo?: number;
-    idCliente?: number;
-}
-
-interface Vehicle {
-    placa?: string;
-    marcaModelo: string;
-    anoFabricacao: number;
-    kmAtual: number;
-}
 
 type RequestBody = Client | Conductor | Displacement | Vehicle;
 
