@@ -30,7 +30,7 @@ export function BasicCard({ client, conductor, displacement, vehicle, buttonOff 
     style={{ transformOrigin: '0 0 0' }}
     {...(true ? { timeout: 1000 } : {})}
   >
-    <Card sx={{ backgroundColor: 'primary.dark', minWidth: 275, minHeight: matches ? 500 : 350, position: 'relative' }} >
+    <Card sx={{ backgroundColor: 'primary.dark', minWidth: 275, minHeight: matches ? 550 : 400, position: 'relative' }} >
       {client && (
         <>
           <CardContent>
